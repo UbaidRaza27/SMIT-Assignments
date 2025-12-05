@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Monochrome Periodic Table - Exact Replication</title>
+    <!-- Load Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Define a custom 18-column grid for the whole page width */
+        .grid-cols-18 {
+            grid-template-columns: repeat(18, minmax(0, 1fr));
+        }
+
+        /* Base box styling */
+        .element-box {
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: center;
+            padding: 0.25rem 0.1rem;
+            border: 1px solid #333; /* Black border */
+            border-radius: 2px;
+            aspect-ratio: 1 / 1.1;
+            text-align: center;
+            font-family: 'Inter', sans-serif;
+            line-height: 1;
+            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+        }
+
+        /* Typography */
+        .atomic-number {
+            font-size: 0.5rem;
+            align-self: flex-start;
+            margin-bottom: 1px;
+            font-weight: 500;
+        }
+
+        .symbol {
+            font-size: 1.1rem;
+            font-weight: 800;
+        }
+
+        /* Monochrome Shading (Group differentiation, no color) */
+        /* These classes correspond to the visual grouping in the image */
+        .shade-alkali-alkaline { background-color: #f5f5f5; } /* Lightest Gray */
+        .shade-transition { background-color: #e0e0e0; }       /* Medium Light Gray */
+        .shade-post-transition { background-color: #cccccc; }  /* Mid Gray */
+        .shade-nonmetal { background-color: #a0a0a0; }         /* Darker Gray */
+        .shade-fblock { background-color: #bdbdbd; }           /* Medium Gray for F-block */
+        .shade-noblegas { background-color: #ffffff; }         /* White */
+        .shade-placeholder { 
+            background-color: #eeeeee; 
+            font-size: 0.75rem; 
+            justify-content: center;
+        } /* Placeholder for 57-71/89-103 */
+
+        /* Container for responsiveness */
+        .table-container {
+            width: 100%;
+            max-width: 1200px;
+            overflow-x: auto;
+            margin-top: 1rem;
+        }
+
+        .periodic-table-grid, .f-block-grid {
+            min-width: 1100px; /* Ensures the 18 columns don't compress too much */
+        }
+        
+        /* Empty cells (blank spaces in the main table grid) */
+        .empty-cell {
+            visibility: hidden; /* Invisible, but takes up space */
+            height: 100%;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-black">
+
+<div class="table-container mx-auto p-4">
+
+    <h1 class="text-xl font-bold text-center mb-4 text-gray-800">The Periodic Table</h1>
+
+    <!-- MAIN GRID: Periods 1-7 (7 rows) x Groups 1-18 (18 columns) -->
+    <div class="periodic-table-grid grid grid-cols-18 gap-0.5">
+        
+        <script>
+            // Element data with exact grid positioning (cs=col-start, rs=row-start) and group shading (s)
+            const elementData = [
+                // Period 1
+                { n: 1, s: 'H', cs: 1, rs: 1, c: 'shade-noblegas' }, 
+                { n: 2, s: 'He', cs: 18, rs: 1, c: 'shade-noblegas' },
+
+                // Period 2
+                { n: 3, s: 'Li', cs: 1, rs: 2, c: 'shade-alkali-alkaline' },
+                { n: 4, s: 'Be', cs: 2, rs: 2, c: 'shade-alkali-alkaline' },
+                // Columns 3-12 are empty
+                { n: 5, s: 'B', cs: 13, rs: 2, c: 'shade-nonmetal' },
+                { n: 6, s: 'C', cs: 14, rs: 2, c: 'shade-nonmetal' },
+                { n: 7, s: 'N', cs: 15, rs: 2, c: 'shade-nonmetal' },
+                { n: 8, s: 'O', cs: 16, rs: 2, c: 'shade-nonmetal' },
+                { n: 9, s: 'F', cs: 17, rs: 2, c: 'shade-nonmetal' },
+                { n: 10, s: 'Ne', cs: 18, rs: 2, c: 'shade-noblegas' },
+
+                // Period 3
+                { n: 11, s: 'Na', cs: 1, rs: 3, c: 'shade-alkali-alkaline' },
+                { n: 12, s: 'Mg', cs: 2, rs: 3, c: 'shade-alkali-alkaline' },
+                // Columns 3-12 are empty
+                { n: 13, s: 'Al', cs: 13, rs: 3, c: 'shade-post-transition' },
+                { n: 14, s: 'Si', cs: 14, rs: 3, c: 'shade-nonmetal' },
+                { n: 15, s: 'P', cs: 15, rs: 3, c: 'shade-nonmetal' },
+                { n: 16, s: 'S', cs: 16, rs: 3, c: 'shade-nonmetal' },
+                { n: 17, s: 'Cl', cs: 17, rs: 3, c: 'shade-nonmetal' },
+                { n: 18, s: 'Ar', cs: 18, rs: 3, c: 'shade-noblegas' },
+
+                // Period 4
+                { n: 19, s: 'K', cs: 1, rs: 4, c: 'shade-alkali-alkaline' },
+                { n: 20, s: 'Ca', cs: 2, rs: 4, c: 'shade-alkali-alkaline' },
+                { n: 21, s: 'Sc', cs: 3, rs: 4, c: 'shade-transition' },
+                { n: 22, s: 'Ti', cs: 4, rs: 4, c: 'shade-transition' },
+                { n: 23, s: 'V', cs: 5, rs: 4, c: 'shade-transition' },
+                { n: 24, s: 'Cr', cs: 6, rs: 4, c: 'shade-transition' },
+                { n: 25, s: 'Mn', cs: 7, rs: 4, c: 'shade-transition' },
+                { n: 26, s: 'Fe', cs: 8, rs: 4, c: 'shade-transition' },
+                { n: 27, s: 'Co', cs: 9, rs: 4, c: 'shade-transition' },
+                { n: 28, s: 'Ni', cs: 10, rs: 4, c: 'shade-transition' },
+                { n: 29, s: 'Cu', cs: 11, rs: 4, c: 'shade-transition' },
+                { n: 30, s: 'Zn', cs: 12, rs: 4, c: 'shade-transition' },
+                { n: 31, s: 'Ga', cs: 13, rs: 4, c: 'shade-post-transition' },
+                { n: 32, s: 'Ge', cs: 14, rs: 4, c: 'shade-nonmetal' },
+                { n: 33, s: 'As', cs: 15, rs: 4, c: 'shade-nonmetal' },
+                { n: 34, s: 'Se', cs: 16, rs: 4, c: 'shade-nonmetal' },
+                { n: 35, s: 'Br', cs: 17, rs: 4, c: 'shade-nonmetal' },
+                { n: 36, s: 'Kr', cs: 18, rs: 4, c: 'shade-noblegas' },
+
+                // Period 5
+                { n: 37, s: 'Rb', cs: 1, rs: 5, c: 'shade-alkali-alkaline' },
+                { n: 38, s: 'Sr', cs: 2, rs: 5, c: 'shade-alkali-alkaline' },
+                { n: 39, s: 'Y', cs: 3, rs: 5, c: 'shade-transition' },
+                { n: 40, s: 'Zr', cs: 4, rs: 5, c: 'shade-transition' },
+                { n: 41, s: 'Nb', cs: 5, rs: 5, c: 'shade-transition' },
+                { n: 42, s: 'Mo', cs: 6, rs: 5, c: 'shade-transition' },
+                { n: 43, s: 'Tc', cs: 7, rs: 5, c: 'shade-transition' },
+                { n: 44, s: 'Ru', cs: 8, rs: 5, c: 'shade-transition' },
+                { n: 45, s: 'Rh', cs: 9, rs: 5, c: 'shade-transition' },
+                { n: 46, s: 'Pd', cs: 10, rs: 5, c: 'shade-transition' },
+                { n: 47, s: 'Ag', cs: 11, rs: 5, c: 'shade-transition' },
+                { n: 48, s: 'Cd', cs: 12, rs: 5, c: 'shade-transition' },
+                { n: 49, s: 'In', cs: 13, rs: 5, c: 'shade-post-transition' },
+                { n: 50, s: 'Sn', cs: 14, rs: 5, c: 'shade-post-transition' },
+                { n: 51, s: 'Sb', cs: 15, rs: 5, c: 'shade-nonmetal' },
+                { n: 52, s: 'Te', cs: 16, rs: 5, c: 'shade-nonmetal' },
+                { n: 53, s: 'I', cs: 17, rs: 5, c: 'shade-nonmetal' },
+                { n: 54, s: 'Xe', cs: 18, rs: 5, c: 'shade-noblegas' },
+
+                // Period 6
+                { n: 55, s: 'Cs', cs: 1, rs: 6, c: 'shade-alkali-alkaline' },
+                { n: 56, s: 'Ba', cs: 2, rs: 6, c: 'shade-alkali-alkaline' },
+                { n: 57, s: '57-71', cs: 3, rs: 6, c: 'shade-placeholder', label: true }, // Lanthanide Placeholder
+                { n: 72, s: 'Hf', cs: 4, rs: 6, c: 'shade-transition' },
+                { n: 73, s: 'Ta', cs: 5, rs: 6, c: 'shade-transition' },
+                { n: 74, s: 'W', cs: 6, rs: 6, c: 'shade-transition' },
+                { n: 75, s: 'Re', cs: 7, rs: 6, c: 'shade-transition' },
+                { n: 76, s: 'Os', cs: 8, rs: 6, c: 'shade-transition' },
+                { n: 77, s: 'Ir', cs: 9, rs: 6, c: 'shade-transition' },
+                { n: 78, s: 'Pt', cs: 10, rs: 6, c: 'shade-transition' },
+                { n: 79, s: 'Au', cs: 11, rs: 6, c: 'shade-transition' },
+                { n: 80, s: 'Hg', cs: 12, rs: 6, c: 'shade-transition' },
+                { n: 81, s: 'Tl', cs: 13, rs: 6, c: 'shade-post-transition' },
+                { n: 82, s: 'Pb', cs: 14, rs: 6, c: 'shade-post-transition' },
+                { n: 83, s: 'Bi', cs: 15, rs: 6, c: 'shade-post-transition' },
+                { n: 84, s: 'Po', cs: 16, rs: 6, c: 'shade-post-transition' },
+                { n: 85, s: 'At', cs: 17, rs: 6, c: 'shade-post-transition' },
+                { n: 86, s: 'Rn', cs: 18, rs: 6, c: 'shade-noblegas' },
+
+                // Period 7
+                { n: 87, s: 'Fr', cs: 1, rs: 7, c: 'shade-alkali-alkaline' },
+                { n: 88, s: 'Ra', cs: 2, rs: 7, c: 'shade-alkali-alkaline' },
+                { n: 89, s: '89-103', cs: 3, rs: 7, c: 'shade-placeholder', label: true }, // Actinide Placeholder
+                { n: 104, s: 'Rf', cs: 4, rs: 7, c: 'shade-transition' },
+                { n: 105, s: 'Db', cs: 5, rs: 7, c: 'shade-transition' },
+                { n: 106, s: 'Sg', cs: 6, rs: 7, c: 'shade-transition' },
+                { n: 107, s: 'Bh', cs: 7, rs: 7, c: 'shade-transition' },
+                { n: 108, s: 'Hs', cs: 8, rs: 7, c: 'shade-transition' },
+                { n: 109, s: 'Mt', cs: 9, rs: 7, c: 'shade-transition' },
+                { n: 110, s: 'Ds', cs: 10, rs: 7, c: 'shade-transition' },
+                { n: 111, s: 'Rg', cs: 11, rs: 7, c: 'shade-transition' },
+                { n: 112, s: 'Cn', cs: 12, rs: 7, c: 'shade-transition' },
+                { n: 113, s: 'Nh', cs: 13, rs: 7, c: 'shade-post-transition' },
+                { n: 114, s: 'Fl', cs: 14, rs: 7, c: 'shade-post-transition' },
+                { n: 115, s: 'Mc', cs: 15, rs: 7, c: 'shade-post-transition' },
+                { n: 116, s: 'Lv', cs: 16, rs: 7, c: 'shade-post-transition' },
+                { n: 117, s: 'Ts', cs: 17, rs: 7, c: 'shade-post-transition' },
+                { n: 118, s: 'Og', cs: 18, rs: 7, c: 'shade-noblegas' },
+            ];
+
+            // F-Block elements for the bottom rows
+            const fBlockData = [
+                // Lanthanides (57-71)
+                { n: 57, s: 'La', c: 'shade-fblock' }, { n: 58, s: 'Ce', c: 'shade-fblock' }, { n: 59, s: 'Pr', c: 'shade-fblock' },
+                { n: 60, s: 'Nd', c: 'shade-fblock' }, { n: 61, s: 'Pm', c: 'shade-fblock' }, { n: 62, s: 'Sm', c: 'shade-fblock' },
+                { n: 63, s: 'Eu', c: 'shade-fblock' }, { n: 64, s: 'Gd', c: 'shade-fblock' }, { n: 65, s: 'Tb', c: 'shade-fblock' },
+                { n: 66, s: 'Dy', c: 'shade-fblock' }, { n: 67, s: 'Ho', c: 'shade-fblock' }, { n: 68, s: 'Er', c: 'shade-fblock' },
+                { n: 69, s: 'Tm', c: 'shade-fblock' }, { n: 70, s: 'Yb', c: 'shade-fblock' }, { n: 71, s: 'Lu', c: 'shade-fblock' },
+
+                // Actinides (89-103)
+                { n: 89, s: 'Ac', c: 'shade-fblock' }, { n: 90, s: 'Th', c: 'shade-fblock' }, { n: 91, s: 'Pa', c: 'shade-fblock' },
+                { n: 92, s: 'U', c: 'shade-fblock' }, { n: 93, s: 'Np', c: 'shade-fblock' }, { n: 94, s: 'Pu', c: 'shade-fblock' },
+                { n: 95, s: 'Am', c: 'shade-fblock' }, { n: 96, s: 'Cm', c: 'shade-fblock' }, { n: 97, s: 'Bk', c: 'shade-fblock' },
+                { n: 98, s: 'Cf', c: 'shade-fblock' }, { n: 99, s: 'Es', c: 'shade-fblock' }, { n: 100, s: 'Fm', c: 'shade-fblock' },
+                { n: 101, s: 'Md', c: 'shade-fblock' }, { n: 102, s: 'No', c: 'shade-fblock' }, { n: 103, s: 'Lr', c: 'shade-fblock' },
+            ];
+
+
+            function createElementHtml(e) {
+                const isPlaceholder = e.label;
+                const numberHtml = isPlaceholder ? `<span class="text-xs font-semibold">${e.s}</span>` : `<span class="atomic-number">${e.n}</span>`;
+                const symbolHtml = isPlaceholder ? '' : `<span class="symbol">${e.s}</span>`;
+                const positioning = (e.cs && e.rs) ? `col-start-${e.cs} row-start-${e.rs}` : '';
+                
+                return `
+                    <div class="element-box ${positioning} ${e.c} text-black border-black">
+                        ${numberHtml}
+                        ${symbolHtml}
+                    </div>
+                `;
+            }
+
+            const gridContainer = document.querySelector('.periodic-table-grid');
+            if (gridContainer) {
+                // Render main table elements
+                gridContainer.innerHTML = elementData.map(e => createElementHtml(e)).join('');
+
+                // Render empty cells for the large blank space (Periods 2 & 3, Groups 3-12)
+                for (let r = 2; r <= 3; r++) {
+                    for (let c = 3; c <= 12; c++) {
+                        gridContainer.innerHTML += `<div class="empty-cell col-start-${c} row-start-${r}"></div>`;
+                    }
+                }
+            }
+        </script>
+    </div>
+    
+    <!-- F-Block Series Container, offset by 3 columns -->
+    <div class="f-block-series-container mt-4 pt-4">
+        
+        <div class="f-block-grid grid grid-cols-18 gap-0.5 mx-auto">
+            <script>
+                // Insert a 3-column gap to align the f-block under group 3
+                const fBlockGrid = document.querySelector('.f-block-grid');
+                if (fBlockGrid) {
+                    // Blank cells for the left offset
+                    fBlockGrid.innerHTML += '<div class="col-span-3"></div>';
+                    
+                    // Lanthanide Row (15 elements)
+                    fBlockGrid.innerHTML += fBlockData.slice(0, 15).map(e => createElementHtml(e)).join('');
+
+                    // Blank cells for the next row's offset
+                    fBlockGrid.innerHTML += '<div class="col-span-3"></div>';
+
+                    // Actinide Row (15 elements)
+                    fBlockGrid.innerHTML += fBlockData.slice(15).map(e => createElementHtml(e)).join('');
+                }
+            </script>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

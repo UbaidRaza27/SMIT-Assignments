@@ -1,0 +1,437 @@
+*{
+    margin: 0px;
+    padding: 0px;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    box-sizing: border-box;
+}
+
+.mynavbar {
+    display: flex;
+    justify-content: space-between;
+    justify-content: center;
+    background-color: #1d1d1f;
+    padding: 0 20px;
+    height: 44px;
+    color: #f5f5f7;
+}
+
+.logo {
+    height: 10px;
+    width: 10px;
+    position: absolute;
+}
+
+.navleft img {
+    height: 20px;
+    width: 20px;
+    position: relative;
+    right: 20px;
+}
+
+.navleft,
+.navright {
+    display: flex;
+    align-items: center;
+}
+
+.navleft a,
+.navright a {
+    color: #f5f5f7;
+    text-decoration: none;
+    margin: 0 10px;
+    font-size: 14px;
+    transition: opacity 0.2s ease;
+}
+
+.navleft a:hover,
+.navright a:hover {
+    opacity: 0.6;
+}
+
+.navleft a.logo {
+    font-size: 18px;
+    margin-right: 20px;
+}
+
+.uper {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 15px;
+}
+
+.uper img {
+    width: 100%;
+    height: 680px;
+}
+
+.uper h1 {
+    color: white;
+    position: absolute;
+    left: 650px;
+    top: 110px;
+    font-family: 'Arial Narrow', Arial, sans-serif;
+    font-size: 60px;
+    font-weight: bold;
+}
+
+.uper p {
+    color: white;
+    position: absolute;
+    left: 730px;
+    top: 175px;
+    font-size: 30px;
+}
+
+.uper button {
+    position: absolute;
+    left: 680px;
+    top: 230px;
+    padding: 12px 30px;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    background-color: #007bff;
+    color: white;
+    border-radius: 9999px;
+    font-size: 15px;
+    font-weight: 500;
+    text-decoration: none;
+}
+
+.Buy {
+    position: absolute;
+    left: 150px;
+    top: 0px;
+}
+
+.Buy button {
+    background-color: black;
+    border: 1px solid #007bff;
+    color: #007bff;
+}
+.Buy button:hover {
+    background-color: #007bff;
+    color: white;
+}
+
+.air {
+    display: flex;
+    justify-content: center;
+    position: relative;
+    margin-bottom: 15px;
+}
+
+.air img {
+    width: 100%;
+    height: 680px;
+}
+
+.air h1 {
+    color: rgb(0, 0, 0);
+    position: absolute;
+    left: 680px;
+    top: 110px;
+    font-family: 'Arial Narrow', Arial, sans-serif;
+    font-size: 60px;
+    font-weight: bold;
+}
+
+.air p {
+    color: rgb(0, 0, 0);
+    position: absolute;
+    left: 655px;
+    top: 165px;
+    font-size: 23px;
+    text-align: center;
+}
+
+.air button {
+    position: absolute;
+    left: 680px;
+    top: 250px;
+    padding: 12px 30px;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    background-color: #007bff;
+    color: white;
+    border-radius: 9999px;
+    font-size: 15px;
+    font-weight: 500;
+    text-decoration: none;
+}
+
+.airBuy {
+    position: absolute;
+    left: 150px;
+    top: 0px;
+}
+
+.airBuy button {
+    background-color: #F5F5F7;
+    border: 1px solid #007bff;
+    color: #007bff;
+}
+.airBuy button:hover {
+    background-color: #007bff;
+    color: white;
+}
+
+.Mac {
+    display: flex;
+    justify-content: center;
+    position: relative;
+}
+
+.Mac img {
+    width: 100%;
+    height: 680px;
+}
+
+.Mac h1 {
+    color: white;
+    position: absolute;
+    left: 600px;
+    top: 60px;
+    font-family: 'Arial Narrow', Arial, sans-serif;
+    font-size: 60px;
+    font-weight: bold;
+}
+
+.Mac p {
+    color: white;
+    position: absolute;
+    left: 660px;
+    top: 125px;
+    font-size: 30px;
+}
+
+.Mac button {
+    position: absolute;
+    left: 680px;
+    top: 180px;
+    padding: 12px 30px;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    background-color: #007bff;
+    color: white;
+    border-radius: 9999px;
+    font-size: 15px;
+    font-weight: 500;
+    text-decoration: none;
+}
+
+.MacBuy {
+    position: absolute;
+    left: 150px;
+    top: 0px;
+}
+
+.MacBuy button {
+    background-color: black;
+    border: 1px solid #007bff;
+    color: #007bff;
+}
+.MacBuy button:hover {
+    background-color: #007bff;
+    color: white;
+}
+
+.grid {
+  text-align: center;
+  position: relative;
+  padding-top: 20px;
+}
+
+.grid img {
+    width: 100%;
+    /* height: 680px; */
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+}
+
+.watchlogo img {
+    position: absolute;
+    left: 200px;
+    top: 100px;
+    width: 350px;
+    box-shadow: none !important;
+}
+
+.watch p {
+    color: rgb(0, 0, 0);
+    position: absolute;
+    left: 180px;
+    top: 145px;
+    font-size: 23px;
+}
+
+.grid button {
+    position: absolute;
+    left: 260px;
+    top: 200px;
+    padding: 12px 30px;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    background-color: #007bff;
+    color: white;
+    border-radius: 9999px;
+    font-size: 15px;
+    font-weight: 500;
+    text-decoration: none;
+}
+
+.watchBuy {
+    position: absolute;
+    left: 150px;
+    top: 0px;
+}
+
+.watchBuy button {
+    background-color: #F5F5F7;
+    border: 1px solid #007bff;
+    color: #007bff;
+}
+.watchBuy button:hover {
+    background-color: #007bff;
+    color: white;
+}
+
+.ipadlogo img {
+    position: absolute;
+    left: 300px;
+    top: 100px;
+    width: 150px;
+    box-shadow: none !important;
+}
+
+.ipad p {
+    color: rgb(0, 0, 0);
+    position: absolute;
+    left: 220px;
+    top: 145px;
+    font-size: 23px;
+}
+
+.ipad2 h1 {
+    position: absolute;
+    left: 350px;
+    top: 80px;
+}
+
+.ipad2 p {
+    color: rgb(0, 0, 0);
+    position: absolute;
+    left: 210px;
+    top: 125px;
+    font-size: 23px;
+}
+
+.ipad2 button {
+    top: 210px;
+}
+
+.airpod h1 {
+    position: absolute;
+    left: 250px;
+    top: 80px;
+}
+
+.airpod p {
+    color: rgb(0, 0, 0);
+    position: absolute;
+    left: 240px;
+    top: 125px;
+    font-size: 23px;
+}
+
+.airpod button {
+    top: 210px;
+}
+
+.tradeinlogo img {
+    position: absolute;
+    left: 300px;
+    top: 100px;
+    width: 150px;
+    box-shadow: none !important;
+}
+
+.tradein p {
+    color: rgb(0, 0, 0);
+    position: absolute;
+    left: 240px;
+    top: 145px;
+    font-size: 23px;
+}
+
+.tradeingetbtn button {
+    top: 260px;
+    left: 285px;
+}
+
+.cardlogo img {
+    position: absolute;
+    left: 300px;
+    top: 100px;
+    width: 150px;
+    box-shadow: none !important;
+}
+
+.Card p {
+    color: rgb(0, 0, 0);
+    position: absolute;
+    left: 230px;
+    top: 155px;
+    font-size: 23px;
+}
+
+.Card button {
+    top: 230px;
+}
+
+.footer {
+    background-color: #F5F5F7;
+    color: #676768;
+    margin-top: 50px;
+    padding-top: 15px;
+    padding-left: 300px;
+    padding-right: 300px;
+}
+
+.footer-colum {
+    display: flex;
+}
+
+.uper-footer {
+    font-size: 13px;
+}
+
+.footer-colum li {
+    list-style: none;
+    font-size: 14px;
+    margin-bottom: 3px;
+}
+
+.first-row {
+    margin-right: 35px;
+}
+
+.third-row {
+    margin-right: 25px;
+}
+
+.bottom-footer {
+    display: flex;
+}
+
+.footer p {
+    font-size: 13px;
+    margin-left: 32px;
+    display: flex;
+}
+
+.footer-languages {
+    padding-left: 150px;
+}
